@@ -1,0 +1,8 @@
+pyinstaller
+"pip3 install pyinstaller"
+if that does not work do
+"pip3 uninstall pyinstaller"
+and then do
+"pip install pyinstaller"
+
+pip means python so if you know your python is below 3 first update lol and second pip3 is for python 3
