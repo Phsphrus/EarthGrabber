@@ -31,14 +31,16 @@ this is for personal use ONLY do not hack anyone without there consent or anyone
     • WIFI ASN
     •
     • # PC INFO
-    • DISK INFO
     • TOTAL DISK SPACE LEFT
     • TOTAL DISK SPACE
+    • DISK INFO
     • PC HOSTNAME
     • PC USERNAME
     • MAC ADDRESS
     • CPU CORES
     • PC UPTIME
+    • RAM AMOUNT
+    • GPU TYPE
     • PC TYPE
     •
     • # LOCATION INFO
